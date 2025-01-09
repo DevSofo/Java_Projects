@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sat Sep 07 19:14:10 EEST 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0191-cd43-af83-00000e99e3b0 
+on database directory C:\Users\Sofok\Desktop\JavaProjects\MealsProject-main\derbydemo3 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@4d7e1886 
+Loaded from file:/C:/Users/Sofok/.m2/repository/org/apache/derby/derby/10.15.2.0/derby-10.15.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=19.0.2+7-44
+user.dir=C:\Users\Sofok\Desktop\JavaProjects\MealsProject-main
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
