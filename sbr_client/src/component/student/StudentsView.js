@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
+import { FaEye, FaTrashAlt,FaEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 
 const StudentsView = () => {
@@ -20,11 +22,16 @@ const StudentsView = () => {
 
         }
         
-    }
+    };
+const handDelete=async(id)=>{
+    await axios.delete(`http://localhost:9192/students/delete/${id}`);
+    loadStudents();
+
+}
 
   return (
     <section>
-        <table className='table table-bordered table-hover'>
+        <table className='table table-bordered table-hover shadow'>
             <thead>
                 <tr className='text-center'>
                     <th>ID</th>
@@ -47,20 +54,24 @@ const StudentsView = () => {
                     <td>{student.email}</td>
                     <td>{student.department}</td>
                     <td className='mx-2'>
-                        <button 
-                        className='btn btn-info'>View
-                        </button>
-                        </td>
-                    <td className='mx-2'>
-                    <button 
-                        className='btn btn-warning'>Update
-                        </button>
+                        <Link className='btn btn-info' to={`/student-profile/$   {student.id}`}>
+                            <FaEye/> 
+                        </Link> 
                     </td>
                     <td className='mx-2'>
-                    <button 
-                        className='btn btn-danger'>Delete
-                        </button>
+                        <Link className='btn btn-warning' to={`/edit-student/${student.id}`}>
+                            <FaEdit/>
+                        </Link>
                     </td>
+                    <td className='mx-2'>
+                        <Link 
+                            className='btn btn-danger'
+                            onClick={()=>handDelete(student.id)}
+                        >
+                        <FaTrashAlt/>
+                        </Link>
+                    </td>
+
                 </tr>
                 ))}
                 
