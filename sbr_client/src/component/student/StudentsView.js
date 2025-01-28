@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { FaEye, FaTrashAlt,FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import Search from '../common/Search';
 
 
 const StudentsView = () => {
     const [students,setStudents]=useState([]);
+    const[search,setSearch]=useState("");
 
     useEffect(()=>{
         loadStudents();
@@ -31,6 +33,10 @@ const handDelete=async(id)=>{
 
   return (
     <section>
+        <Search
+				search={search}
+				setSearch={setSearch}
+		/>
         <table className='table table-bordered table-hover shadow'>
             <thead>
                 <tr className='text-center'>
@@ -44,7 +50,12 @@ const handDelete=async(id)=>{
             </thead>
 
             <tbody className='text-center'>
-                {students.map((student,index)=>(
+                {students
+                .filter((st) =>
+                    st.firstName
+                        .toLowerCase()
+                        .includes(search))
+                        .map((student,index)=>(
                     <tr key={student.id}>
                         <th scope='row' key={index}>
                             {index+1}
