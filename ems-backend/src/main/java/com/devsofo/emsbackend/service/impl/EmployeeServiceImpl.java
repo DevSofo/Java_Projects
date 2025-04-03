@@ -2,6 +2,7 @@ package com.devsofo.emsbackend.service.impl;
 
 import com.devsofo.emsbackend.dto.EmployeeDto;
 import com.devsofo.emsbackend.entity.Employee;
+import com.devsofo.emsbackend.exception.ResourceNotFoundException;
 import com.devsofo.emsbackend.mapper.EmployeeMapper;
 import com.devsofo.emsbackend.repository.EmployeeRepository;
 import com.devsofo.emsbackend.service.EmployeeService;
@@ -22,5 +23,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee savedEmployee = employeeRepository.save(employee);
         // Convert the saved employee entity back to EmployeeDto
         return EmployeeMapper.mapToEmployeeDto(savedEmployee) ;
+    }
+
+    @Override
+    public EmployeeDto getEmployeeById(Long employeeId) {
+        Employee employee=employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + employeeId));
+        return EmployeeMapper.mapToEmployeeDto(employee);
     }
 }
